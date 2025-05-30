@@ -5,7 +5,7 @@ const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: process.env.CONNECT_BACKEND_URL,
     methods: ["GET", "POST"],
     credentials: true
   }
@@ -25,7 +25,7 @@ const User = mongoose.models.User || require('./models/User.model');
 const Chat = mongoose.models.Chat || require('./models/Chat.model');
 
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: process.env.CONNECT_BACKEND_URL,
   credentials: true
 }));
 app.use(express.json());
