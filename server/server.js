@@ -90,8 +90,8 @@ io.on('connection', async (socket) => {
 
   // only displaying last 50 messages to client
   try {
-    const chatHistory = await Chat.find().sort({ timestamp: 1 }).limit(50);
-    socket.emit('chat history', chatHistory);
+    const chatHistory = await Chat.find().sort({ timestamp: -1 }).limit(50);
+    socket.emit('chat history', chatHistory.reverse());
   } catch (err) {
     console.error('Error fetching chat history:', err);
   }
