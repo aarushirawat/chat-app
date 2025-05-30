@@ -18,7 +18,7 @@ export default function Chat() {
       navigate("/");
       return;
     }
-    socket.current = io("http://localhost:3000");
+    socket.current = io(`${import.meta.env.VITE_BASE_URL}`);
 
     socket.current.on("chat history", (history) => {
       setMessages(history.map(msg => ({
